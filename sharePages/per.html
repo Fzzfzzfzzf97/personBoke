@@ -1,0 +1,163 @@
+<!--
+ * @Description: 
+ * @Version: 2.0
+ * @Autor: HHQ
+ * @Date: 2020-05-19 17:41:00
+ * @LastEditors: HHQ
+ * @LastEditTime: 2020-05-20 14:57:44
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="prettify.css">
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="jquery.min.js"></script>
+    <style>
+        pre {
+            margin: 0 auto;
+            background-color: #353846;
+            font-size: 16px;
+            width: 520px;
+            height: 520px!important;
+            overflow: scroll!important;
+        }
+        /* ! Color themes for Google Code Prettify | MIT License | github.com/jmblog/color-themes-for-google-code-prettify */
+        .pln {
+            color: #FF766B;
+        }
+
+        ol.linenums {
+            margin-top: 0;
+            margin-bottom: 0;
+            color: #8e908c
+        }
+        li.L0,
+        li.L1,
+        li.L2,
+        li.L3,
+        li.L4,
+        li.L5,
+        li.L6,
+        li.L7,
+        li.L8,
+        li.L9 {
+            padding-left: 1em;
+            background-color: #fff;
+            list-style-type: decimal !important;
+        }
+
+        .str {
+            color: #718c00
+        }
+
+        .kwd {
+            color: #3e999f
+        }
+
+        .com {
+            color: #3e999f
+        }
+
+        .typ {
+            color: #4271ae
+        }
+
+        .lit {
+            color: #f5871f
+        }
+
+        .pun {
+            color: #F2F3EF
+        }
+
+        .opn {
+            color: #4d4d4c
+        }
+
+        .clo {
+            color: #4d4d4c
+        }
+
+        .tag {
+            color: #c82829
+        }
+
+        .atn {
+            color: #f5871f
+        }
+
+        .atv {
+            color: #3e999f
+        }
+
+        .dec {
+            color: #f5871f
+        }
+
+        .var {
+            color: #c82829
+        }
+
+        .fun {
+            color: #4271ae
+        }
+    </style>
+</head>
+
+<body>
+    <pre class="prettyprint">
+
+        var a = 1;
+        .box {
+            width: 800px;
+            height: 500px;
+            background-color: #ddd;
+            margin: 50px auto;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        div {
+            width: 100px;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+            background-color: orange;
+        }
+
+        Foo.getName = function() {
+            alert(2)
+        }
+        Foo.prototype.getName = function() {
+            alert(3)
+        }
+        getName = function() {
+            // alert(4)
+            alert(1)
+        }
+
+        // ========================
+        Foo.getName() //2
+        getName() //4
+        Foo().getName() //1
+        getName() //1
+        new Foo.getName() //2
+        new Foo().getName() //3
+        new new Foo().getName() //
+    </pre>
+</body>
+<script src="http://files.cnblogs.com/files/flipped/prettify.js"></script>
+<script type="text/javascript">
+    (function () {
+        $("pre").addClass("prettyprint");
+        prettyPrint();
+    })();
+</script>
+
+</html>
