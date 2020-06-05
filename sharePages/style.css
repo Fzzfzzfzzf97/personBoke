@@ -1,0 +1,38 @@
+@media screen and (max-width: 450px) {
+    .prettyprint {
+        font-size: 10px;
+        width: 120vw !important;
+        margin-left: -20vw !important;
+        height: 360px !important;
+        border-radius: 0;
+    }
+    .tecTitle, .introduction{
+        margin-left: 13px;
+    }
+}
+.pd1em {
+    padding-bottom: 0em !important;
+}
+
+.gtco-footer-link a {
+    font-size: 22px;
+    display: inline-block;
+    padding-bottom: 16px;
+}
+.prettyprint {
+    margin: 20px auto;
+}
+.row {
+    margin-right: 0px;
+}
+.tecTitle {
+    font-size: 50px;
+    color: #eee;
+}
+.introduction p{
+    color: #fff;
+    margin-top: 38px;
+    font-size: 18px!important;
+    line-height: 38px;
+    text-indent: 2em;
+}

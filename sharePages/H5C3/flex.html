@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flex盒子</title>
+    <link rel="stylesheet" href="../prettify.css">
+    <link rel="icon" href="../../images/icon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,300,400,700" rel="stylesheet">
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="../../css/animate.css">
+    <!-- Icomoon Icon Fonts-->
+    <link rel="stylesheet" href="../../css/icomoon.css">
+    <!-- Themify Icons-->
+    <link rel="stylesheet" href="../../css/themify-icons.css">
+    <!-- Bootstrap  -->
+    <link rel="stylesheet" href="../../css/bootstrap.css">
+
+    <!-- Magnific Popup -->
+    <link rel="stylesheet" href="../../css/magnific-popup.css">
+
+    <!-- Owl Carousel  -->
+    <link rel="stylesheet" href="../../css/owl.carousel.min.css">
+    <link rel="stylesheet" href="../../css/owl.theme.default.min.css">
+
+    <!-- Theme style  -->
+    <link rel="stylesheet" href="../../css/style.css">
+
+    <!-- Modernizr JS -->
+    <script src="../../js/modernizr-2.6.2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../jquery.min.js"></script>
+    <style>
+        .pd1em {
+            padding-bottom: 0em !important;
+        }
+
+        .gtco-footer-link a {
+            font-size: 22px;
+            display: inline-block;
+            padding-bottom: 16px;
+        }
+
+        @media screen and (max-width: 450px) {
+            .prettyprint {
+                /* overflow-x: scroll!important; */
+                font-size: 10px;
+                width: 120vw!important;
+                margin-left: -66px!important;
+                height: 360px!important;
+            }
+        }
+        
+        .prettyprint {
+            margin: 20px auto;
+        }
+
+        pre {
+            margin: 0 auto;
+            background-color: #353846;
+            font-size: 16px;
+            width: 70vw;
+            height: 520px !important;
+            overflow: scroll !important;
+            margin: 0;
+        }
+
+        /* ! Color themes for Google Code Prettify | MIT License | github.com/jmblog/color-themes-for-google-code-prettify */
+        .pln {
+            color: #FF766B;
+        }
+
+        ol.linenums {
+            margin-top: 0;
+            margin-bottom: 0;
+            color: #8e908c
+        }
+
+        li.L0,
+        li.L1,
+        li.L2,
+        li.L3,
+        li.L4,
+        li.L5,
+        li.L6,
+        li.L7,
+        li.L8,
+        li.L9 {
+            padding-left: 1em;
+            background-color: #fff;
+            list-style-type: decimal !important;
+        }
+
+        .str {
+            color: #718c00
+        }
+
+        .kwd {
+            color: #3e999f
+        }
+
+        .com {
+            color: #3e999f
+        }
+
+        .typ {
+            color: #4271ae
+        }
+
+        .lit {
+            color: #f5871f
+        }
+
+        .pun {
+            color: #F2F3EF
+        }
+
+        .opn {
+            color: #4d4d4c
+        }
+
+        .clo {
+            color: #4d4d4c
+        }
+
+        .tag {
+            color: #c82829
+        }
+
+        .atn {
+            color: #f5871f
+        }
+
+        .atv {
+            color: #3e999f
+        }
+
+        .dec {
+            color: #f5871f
+        }
+
+        .var {
+            color: #c82829
+        }
+
+        .fun {
+            color: #4271ae
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <div class="gtco-loader"></div> -->
+    <div id="page">
+        <nav class="gtco-nav" role="navigation">
+            <div class="gtco-container">
+
+                <div class="row">
+                    <div class="col-sm-2 col-xs-12">
+                        <div id="gtco-logo"><a href="../../index.html"><img src="../../images/logo.png" alt=""
+                                    style="width: 30px;"></a></div>
+                    </div>
+                    <div class="col-xs-10 text-right menu-1">
+                        <ul>
+                            <li class="active"><a href="../../index.html">首页</a></li>
+                            <li><a href="../../about.html">关于我</a></li>
+                            <li>
+                                <a href="../../services.html">作品分享</a>
+                            </li>
+                            <li><a href="../../technology.html">技术分享</a></li>
+                            <li><a href="../../contact.html">联系我吧</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </nav>
+        <header id="gtco-header" class="gtco-cover gtco-cover-xs gtco-inner" role="banner">
+
+        </header>
+            <pre class="prettyprint">
+                var a = 1;
+                .box {
+                    width: 800px;
+                    height: 500px;
+                    background-color: #ddd;
+                    margin: 50px auto;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    align-items: flex-end;
+                }
+        
+                div {
+                    width: 100px;
+                    height: 30px;
+                    text-align: center;
+                    line-height: 30px;
+                    background-color: orange;
+                }
+        
+                Foo.getName = function() {
+                    alert(2)
+                }
+                Foo.prototype.getName = function() {
+                    alert(3)
+                }
+                getName = function() {
+                    // alert(4)
+                    alert(1)
+                }
+        
+                // ========================
+                Foo.getName() //2
+                getName() //4
+                Foo().getName() //1
+                getName() //1
+                new Foo.getName() //2
+                new Foo().getName() //3
+                new new Foo().getName() //
+            </pre>
+
+    </div>
+
+
+</body>
+<script src="http://files.cnblogs.com/files/flipped/prettify.js"></script>
+<!-- jQuery -->
+<script src="../../js/jquery.min.js"></script>
+<!-- jQuery Easing -->
+<script src="../../js/jquery.easing.1.3.js"></script>
+<!-- Bootstrap -->
+<script src="../../js/bootstrap.min.js"></script>
+<!-- Waypoints -->
+<script src="../../js/jquery.waypoints.min.js"></script>
+<!-- Carousel -->
+<script src="../../js/owl.carousel.min.js"></script>
+<!-- Magnific Popup -->
+<script src="../../js/jquery.magnific-popup.min.js"></script>
+<!-- <script src="../js/magnific-popup-options.js"></script> -->
+<script type="text/javascript">
+    (function () {
+        $("pre").addClass("prettyprint");
+        prettyPrint();
+    })();
+</script>
+
+</html>
