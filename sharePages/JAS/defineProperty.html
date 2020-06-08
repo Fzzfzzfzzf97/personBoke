@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="" />
+    <meta property="og:image" content="" />
+    <meta property="og:url" content="" />
+    <meta property="og:site_name" content="" />
+    <meta property="og:description" content="" />
+    <meta name="twitter:title" content="" />
+    <meta name="twitter:image" content="" />
+    <meta name="twitter:url" content="" />
+    <meta name="twitter:card" content="" />
+    <title>JS数据双向绑定</title>
+    <link rel="stylesheet" href="../prettify.css">
+    <link rel="icon" href="../../images/icon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,300,400,700" rel="stylesheet">
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="../../css/animate.css">
+    <!-- Icomoon Icon Fonts-->
+    <link rel="stylesheet" href="../../css/icomoon.css">
+    <!-- Themify Icons-->
+    <link rel="stylesheet" href="../../css/themify-icons.css">
+    <!-- Bootstrap  -->
+    <link rel="stylesheet" href="../../css/bootstrap.css">
+
+    <!-- Magnific Popup -->
+    <link rel="stylesheet" href="../../css/magnific-popup.css">
+
+    <!-- Owl Carousel  -->
+    <link rel="stylesheet" href="../../css/owl.carousel.min.css">
+    <link rel="stylesheet" href="../../css/owl.theme.default.min.css">
+
+    <!-- Theme style  -->
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../style.css">
+    <!-- Modernizr JS -->
+    <script src="../../js/modernizr-2.6.2.min.js"></script>
+    <!-- FOR IE9 below -->
+    <!--[if lt IE 9]>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../jquery.min.js"></script>
+    <style>
+        pre {
+            margin: 0 auto;
+            background-color: #353846;
+            font-size: 16px;
+            width: 70vw;
+            /* height: 520px !important; */
+            overflow: scroll !important;
+            margin: 0;
+        }
+
+        /* ! Color themes for Google Code Prettify | MIT License | github.com/jmblog/color-themes-for-google-code-prettify */
+        .pln {
+            color: #FF766B;
+        }
+
+        ol.linenums {
+            margin-top: 0;
+            margin-bottom: 0;
+            color: #8e908c
+        }
+
+        li.L0,
+        li.L1,
+        li.L2,
+        li.L3,
+        li.L4,
+        li.L5,
+        li.L6,
+        li.L7,
+        li.L8,
+        li.L9 {
+            padding-left: 1em;
+            background-color: #fff;
+            list-style-type: decimal !important;
+        }
+
+        .str {
+            color: #718c00
+        }
+
+        .kwd {
+            color: #3e999f
+        }
+
+        .com {
+            color: #3e999f
+        }
+
+        .typ {
+            color: #4271ae
+        }
+
+        .lit {
+            color: #f5871f
+        }
+
+        .pun {
+            color: #F2F3EF
+        }
+
+        .opn {
+            color: #4d4d4c
+        }
+
+        .clo {
+            color: #4d4d4c
+        }
+
+        .tag {
+            color: #c82829
+        }
+
+        .atn {
+            color: #f5871f
+        }
+
+        .atv {
+            color: #3e999f
+        }
+
+        .dec {
+            color: #f5871f
+        }
+
+        .var {
+            color: #c82829
+        }
+
+        .fun {
+            color: #4271ae
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <div class="gtco-loader"></div> -->
+    <div id="page">
+        <nav class="gtco-nav" role="navigation">
+            <div class="gtco-container">
+                <div class="row">
+                    <div class="col-sm-2 col-xs-12">
+                        <div id="gtco-logo"><a href="../../index.html"><img src="../../images/logo.png" alt=""
+                                    style="width: 30px;"></a></div>
+                    </div>
+                    <div class="col-xs-10 text-right menu-1">
+                        <ul>
+                            <li><a href="../../index.html">首页</a></li>
+                            <li><a href="../../about.html">关于我</a></li>
+                            <li>
+                                <a href="../../services.html">作品分享</a>
+                            </li>
+                            <li class="active"><a href="../../technology.html">技术分享</a></li>
+                            <li><a href="../../contact.html">联系我吧</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </nav>
+        <header id="gtco-header" class="gtco-cover gtco-cover-xs gtco-inner" role="banner">
+            <div class="row">
+                <div class="col-sm-8 tecTitle">浅谈JS中数据双向绑定</div>
+                <div class="col-sm-4"></div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 tecTitle"></div>
+                <div class="col-sm-10 introduction">
+                    <p>在许多框架中，实现数据的双向绑定是一件非常容易的事情，几行代码就能搞定，但是很少有小伙伴去深入研究其底层实现的原理，
+                        前段时间无意中看到了通过Object.defineProperty()实现数据双向绑定，所以我在此做了一些分享与总结给小伙伴们 . . .</p>
+                </div>
+            </div>
+        </header>
+        <div style="clear: both;"></div>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">我们来看一下数据双向绑定的实现过程</h5>
+                <div class="row">
+                    <div class="col-sm-12">
+                        首先我们要知道Object.defineProperty()这个并不是es6的语法，这个是给一个对象，添加属性，但是目前框架很多使用这个方法，来实现数据劫持，也就是数据双向绑定</div>
+                    <div class="col-sm-12" style="margin:10px 0;">在平时，我们是这样给一个对象添加属性的</div>
+                    <pre class="prettyprint language-js">
+    let obj = {msg:"hello hhq"}
+    obj.msg = 'goodbye hhq'
+    console.log(obj.msg) // 'goodbye hhq'
+                    </pre>
+                    <div class="col-sm-12">现在，我们想要将对象中的数据和一个输入框进行数据的双向动态绑定，我们来看看怎么使用Object.defineProperty()来实现</div>
+                    <div class="col-sm-12" style="margin:10px 0;">我们先看看Object.defineProperty()的语法是怎么回事</div>
+                    <pre class="prettyprint language-js">
+    // 需要注意的是，当使用get set时，则不能使用value和writable
+    let obj = {}
+    let str
+    Object.defineProperty(obj,'name',{
+        enumerable:true,
+        configurable:true, 
+        get(){ 
+            // 读，当我们读取时，则会执行到get，比如obj.msg
+            // return 'hello hhq' // 当我们obj.msg进行读取时，会返回'hello hhq'
+            return str
+        },
+        set(newValue){
+            // 写，当我们写入时，则会执行到set，比如obj.msg = 'hhq'
+            // 并且会把newValue作为参数传进去
+            str = newValue
+        }
+    })
+
+    obj.name = 'hhq' // 写入
+    console.log(obj.name) // 'hhq'  // 读取
+                    </pre>
+                    <div class="col-sm-12">接下来，我们来看看具体到底是怎么实现的吧</div>
+                    <pre class="prettyprint language-js">
+    let el = document.querySelector('#input') // 1. 获取输入框的dom节点
+    let obj = { // 2. 创建一个对象
+      name: ""
+    }
+
+    function oberseve(obj) { // 3. 对对象进行观察
+      if (typeof obj !== 'object') return // 3.1 判断参数是否为对象
+      for (let key in obj) { // 3.2 对对象进行遍历，目的是为了把每个属性都设置get/set
+        defineReactive(obj, key, obj[key])
+        oberseve(obj[key]) // 3.3 obj[key] 有可能还是一个函数，需要递归，给obj[key]里的属性进行设置get/set
+      }
+    }
+
+    function defineReactive(target, property, value) { // 4. 使用Object.defineProperty
+      Object.defineProperty(target, property, {
+        get() {
+          el.value = value // 4.1 当读取时，把值赋值给input框
+          return value
+        },
+        set(newVal) {
+          el.value = newVal // 4.1 当设置时，把赋值给input框
+          value = newVal
+        }
+      })
+    }
+
+    oberseve(obj) // 5.执行该函数，对obj对象里的属性进行设置get/set
+    el.addEventListener('input', function () { // 6.给输入框绑定input事件
+      obj.name = this.value // 7.当输入框输入内容时，我们会把输入框的
+                            //   内容赋值给obj.name，触发obj.name的set方法
+    }) 
+                    </pre>
+                    <div class="col-sm-12">当我们在输入框输入内容时，再到控制台输入obj.name查看这个值时，会发现打印出"hello
+                        hhq",当我们在控制台，给obj.name赋值时，会发现输入框的内容也会作出相应更改</div>
+                    <div class="col-sm-12" style="margin:10px 0 0 0;">
+                        这样我们就实现了一个简陋版的数据双向绑定了，但是这也是有缺点的，这个只是针对对象进行了数据双向绑定,尤大大的Vuejs也是基于Object.defineProperty实现的。</div>
+                </div>
+            </div>
+        </div>
+        <!-- <pre class="prettyprint language-js">
+                var a = 1;
+                .box {
+                    width: 800px;
+                    height: 500px;
+                    background-color: #ddd;
+                    margin: 50px auto;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    align-items: flex-end;
+                }
+        
+                div {
+                    width: 100px;
+                    height: 30px;
+                    text-align: center;
+                    line-height: 30px;
+                    background-color: orange;
+                }
+        
+                Foo.getName = function() {
+                    alert(2)
+                }
+                Foo.prototype.getName = function() {
+                    alert(3)
+                }
+                getName = function() {
+                    // alert(4)
+                    alert(1)
+                }
+        
+                // ========================
+                Foo.getName() //2
+                getName() //4
+                Foo().getName() //1
+                getName() //1
+                new Foo.getName() //2
+                new Foo().getName() //3
+                new new Foo().getName() //
+            </pre> -->
+
+    </div>
+    <div class="gototop js-top">
+        <a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
+    </div>
+
+</body>
+<script src="http://files.cnblogs.com/files/flipped/prettify.js"></script>
+<!-- jQuery -->
+<script src="../../js/jquery.min.js"></script>
+<!-- jQuery Easing -->
+<script src="../../js/jquery.easing.1.3.js"></script>
+<!-- Bootstrap -->
+<script src="../../js/bootstrap.min.js"></script>
+<!-- Waypoints -->
+<script src="../../js/jquery.waypoints.min.js"></script>
+<!-- Carousel -->
+<script src="../../js/owl.carousel.min.js"></script>
+<!-- Magnific Popup -->
+<script src="../../js/jquery.magnific-popup.min.js"></script>
+<script src="./js/magnific-popup-options.js"></script>
+<!-- Main -->
+<script src="./js/main.js"></script>
+<script type="text/javascript">
+    (function () {
+        $("pre").addClass("prettyprint");
+        prettyPrint();
+    })();
+    var goTop = document.querySelector(".gototop");
+    function debounce(fn, delay) {
+        let timer = null //借助闭包
+        return function () {
+            if (timer) {
+                clearTimeout(timer)
+            }
+            timer = setTimeout(fn, delay) // 简化写法
+        }
+    }
+    function showGoTop() {
+        var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+        if(scrollTop>1666) {
+            goTop.style.visibility = visible;
+        }
+    }
+    document.onscroll = debounce(showGoTop,1000);
+</script>
+
+</html>
