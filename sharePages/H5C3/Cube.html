@@ -13,7 +13,7 @@
     <meta name="twitter:image" content="" />
     <meta name="twitter:url" content="" />
     <meta name="twitter:card" content="" />
-    <title>JS数据双向绑定</title>
+    <title>用H5C3来制作一个旋转立方体</title>
     <link rel="stylesheet" href="../prettify.css">
     <link rel="icon" href="../../images/icon.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,300,400,700" rel="stylesheet">
@@ -166,92 +166,106 @@
         </nav>
         <header id="gtco-header" class="gtco-cover gtco-cover-xs gtco-inner" role="banner">
             <div class="row">
-                <div class="col-sm-8 tecTitle">浅谈JS中数据双向绑定</div>
+                <div class="col-sm-8 tecTitle">用H5C3制作旋转立方体</div>
                 <div class="col-sm-4"></div>
             </div>
             <div class="row">
                 <div class="col-sm-2 tecTitle"></div>
                 <div class="col-sm-10 introduction">
-                    <p>在许多框架中，实现数据的双向绑定是一件非常容易的事情，几行代码就能搞定，但是很少有小伙伴去深入研究其底层实现的原理，
-                        前段时间无意中看到了通过Object.defineProperty()实现数据双向绑定，所以我在此做了一些分享与总结给小伙伴们 . . .</p>
+                    <p>在这个小demo中,使用HTML5+CSS3制作一个旋转的立方体，练习了CSS3中transform、动画的使用 . . . </p>
                 </div>
             </div>
         </header>
         <div style="clear: both;"></div>
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">我们来看一下数据双向绑定的实现过程</h5>
+                <h5 class="card-title" style="text-align: left;padding-left: 10px;">我们来看一下具体操作</h5>
                 <div class="row">
                     <div class="col-sm-12">
-                        首先我们要知道Object.defineProperty()这个并不是es6的语法，这个是给一个对象，添加属性，但是目前框架很多使用这个方法，来实现数据劫持，也就是数据双向绑定</div>
-                    <div class="col-sm-12" style="margin:10px 0;">在平时，我们是这样给一个对象添加属性的</div>
-                    <pre class="prettyprint language-js">
-    let obj = {msg:"hello hhq"}
-    obj.msg = 'goodbye hhq'
-    console.log(obj.msg) // 'goodbye hhq'
+                        1.创建HTML结构
+                    </div>
+                    <div class="col-sm-12" style="margin:10px 0;color: #3e999f;">我们创建一个父容器，里面保存正方体六个面</div>
+                    <pre class="prettyprint language-css" >
+                        <xmp style="margin-top: -20px;">
+    <div class="mBox">
+        <div class="top"></div>
+        <div class="bottom"></div>
+        <div class="left"></div>
+        <div class="right"></div>
+        <div class="before"></div>
+        <div class="after"></div>
+    </div>
+                        </xmp>
                     </pre>
-                    <div class="col-sm-12">现在，我们想要将对象中的数据和一个输入框进行数据的双向动态绑定，我们来看看怎么使用Object.defineProperty()来实现</div>
-                    <div class="col-sm-12" style="margin:10px 0;">我们先看看Object.defineProperty()的语法是怎么回事</div>
-                    <pre class="prettyprint language-js">
-    // 需要注意的是，当使用get set时，则不能使用value和writable
-    let obj = {}
-    let str
-    Object.defineProperty(obj,'name',{
-        enumerable:true,
-        configurable:true, 
-        get(){ 
-            // 读，当我们读取时，则会执行到get，比如obj.msg
-            // return 'hello hhq' // 当我们obj.msg进行读取时，会返回'hello hhq'
-            return str
-        },
-        set(newValue){
-            // 写，当我们写入时，则会执行到set，比如obj.msg = 'hhq'
-            // 并且会把newValue作为参数传进去
-            str = newValue
+                    <div class="col-sm-12">
+                        2.创建CSS样式
+                    </div>
+                    <pre class="prettyprint language-css" >
+    .mBox {
+        width: 200px;
+        height: 200px;
+        margin: 50px auto;
+        top: 100px;
+        transform-style: preserve-3d; /*开启3D*/
+        position: relative;
+        transform: rotateY(-45deg) rotateX(-45deg);
+        animation: move 100s linear infinite;/*添加的观测动画效果*/
+    }
+    div {
+        width: 200px;
+        height: 200px;
+        position: absolute;
+        opacity: .8;
+    }
+                    </pre>
+                    <div class="col-sm-12">
+                        3.设置每个面的样式
+                    </div>
+                    <pre class="prettyprint language-css" >
+    .top{
+        background-color: rgb(18, 196, 136);
+        transform: translateZ(100px);
+    
+    }
+    .bottom{
+        background-color: rgb(70, 147, 209);
+        transform: translateZ(-100px);
+    }
+    .left{
+        background-color: rgb(189, 79, 112);
+        transform: translateX(-100px) rotateY(90deg);
+    }
+    .right{
+        background-color: rgb(59, 212, 59);
+        transform: translateX(100px) rotateY(90deg);
+    }
+    .before{
+        background-color: rgb(158, 136, 64);
+        transform: translateY(100px) rotateX(90deg);
+    }
+    .after{
+        background-color: rgb(9, 82, 57);
+        transform: translateY(-100px) rotateX(90deg);
+    }
+                    </pre>
+                    <div class="col-sm-12">
+                        4.最后我们为正方体添加一个动画效果，观测一下
+                    </div>
+                    <pre class="prettyprint language-css" >
+    @keyframes move {
+        0%{
+            transform: rotateY(-45deg) rotateX(45deg);
         }
-    })
-
-    obj.name = 'hhq' // 写入
-    console.log(obj.name) // 'hhq'  // 读取
-                    </pre>
-                    <div class="col-sm-12">接下来，我们来看看具体到底是怎么实现的吧</div>
-                    <pre class="prettyprint language-js">
-    let el = document.querySelector('#input') // 1. 获取输入框的dom节点
-    let obj = { // 2. 创建一个对象
-      name: ""
-    }
-
-    function oberseve(obj) { // 3. 对对象进行观察
-      if (typeof obj !== 'object') return // 3.1 判断参数是否为对象
-      for (let key in obj) { // 3.2 对对象进行遍历，目的是为了把每个属性都设置get/set
-        defineReactive(obj, key, obj[key])
-        oberseve(obj[key]) // 3.3 obj[key] 有可能还是一个函数，需要递归，给obj[key]里的属性进行设置get/set
-      }
-    }
-
-    function defineReactive(target, property, value) { // 4. 使用Object.defineProperty
-      Object.defineProperty(target, property, {
-        get() {
-          el.value = value // 4.1 当读取时，把值赋值给input框
-          return value
-        },
-        set(newVal) {
-          el.value = newVal // 4.1 当设置时，把赋值给input框
-          value = newVal
+        100%{
+            transform: rotateY(10000deg) rotateX(5000deg);
         }
-      })
     }
-
-    oberseve(obj) // 5.执行该函数，对obj对象里的属性进行设置get/set
-    el.addEventListener('input', function () { //6.给输入框绑定input事件
-      obj.name = this.value // 7.当输入框输入内容时，我们会把输入框的
-                            //  内容赋值给obj.name，触发obj.name的set方法
-    }) 
                     </pre>
-                    <div class="col-sm-12">当我们在输入框输入内容时，再到控制台输入obj.name查看这个值时，会发现打印出"hello
-                        hhq",当我们在控制台，给obj.name赋值时，会发现输入框的内容也会作出相应更改</div>
-                    <div class="col-sm-12" style="margin:10px 0 0 0;">
-                        这样我们就实现了一个简陋版的数据双向绑定了，但是这也是有缺点的，这个只是针对对象进行了数据双向绑定,尤大大的Vuejs也是基于Object.defineProperty实现的。</div>
+                    <div class="col-sm-12">
+                        <image class="boxsizeImg" src="../../images/cubeImg.png">
+                        </image>
+                    </div>
+                    <div class="col-sm-12">大功告成啦！</div>
                 </div>
             </div>
         </div>
@@ -336,11 +350,11 @@
     }
     function showGoTop() {
         var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
-        if(scrollTop>1666) {
+        if (scrollTop > 1666) {
             goTop.style.visibility = visible;
         }
     }
-    document.onscroll = debounce(showGoTop,1000);
+    document.onscroll = debounce(showGoTop, 1000);
 </script>
 
 </html>

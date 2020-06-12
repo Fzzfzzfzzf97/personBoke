@@ -1,6 +1,5 @@
 <!DOCTYPE HTML>
 <html>
-
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -47,7 +46,11 @@
 	<!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
-
+	<style>
+		.ul_pageList li{
+			margin: 10px 0px;
+		}
+	</style>
 </head>
 
 <body>
@@ -108,17 +111,22 @@
 			</div>
 		</header>
 		<!-- END #gtco-header -->
-
 		<div class="gtco-section">
 			<div class="gtco-container">
 				<div class="row">
 					<div class="col-md-8 col-md-offset-2 gtco-heading text-center">
 						<h2>HTML5 和 CSS3 相关</h2>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus placerat enim et urna
-							sagittis, rhoncus euismod erat tincidunt. Donec tincidunt volutpat erat.</p>
+						<p>HTML5 和 CSS3 中，HTML 属于结构层，负责描绘出内容的结构。
+							CSS 属于表示层，负责如何显示有关内容 . . .</p>
+							<ul style="text-align: left;" class="ul_pageList">
+								<li>
+									<a href="./sharePages/H5C3/boxSizing.html">CSS中 box-sizing:标准盒子模型和怪异盒子模型</a>
+								</li>
+								<li>
+									<a href="./sharePages/H5C3/Cube.html">用H5C3来制作一个旋转立方体</a>
+								</li>
+							</ul>
 					</div>
-				</div>
-				<div class="row">
 				</div>
 			</div>
 		</div>
@@ -129,17 +137,18 @@
 					<div class="col-md-8 col-md-offset-2 gtco-heading text-center">
 						<h2>探秘 JavaScript</h2>
 						<p>JS是工作中用的最多的,也是最重要的一部分,我在这里记录了一些JS实用并且重要的知识点 . . .</p>
-						<ui style="text-align: left;">
-							<li>
-								<a href="./sharePages/JAS/defineProperty.html">浅谈JS中数据双向绑定</a>
-							</li>
+						<ul style="text-align: left;" class="ul_pageList">
 							<li>
 								<a href="./sharePages/JAS/throttleDebounce.html">JS如何实现防抖和节流及应用场景</a>
 							</li>
 							<li>
-								<a href="./sharePages/JAS/throttleDebounce.html">工作中常用的ES6中的一些小技巧</a>
+								<a href="./sharePages/JAS/defineProperty.html">浅谈JS中数据双向绑定</a>
 							</li>
-						</ui>
+
+							<!-- <li>
+								<a href="./sharePages/JAS/throttleDebounce.html">工作中常用的ES6中的一些小技巧</a>
+							</li> -->
+						</ul>
 					</div>
 				</div>
 			</div>
