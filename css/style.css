@@ -970,8 +970,8 @@ form label {
 #gtco-offcanvas {
   position: absolute;
   z-index: 1901;
-  width: 270px;
-  background: black;
+  width: 210px;
+  background: #3ABABD;
   top: 0;
   right: 0;
   top: 0;
@@ -1001,10 +1001,10 @@ form label {
   transform: translateX(0px);
 }
 #gtco-offcanvas a {
-  color: rgba(255, 255, 255, 0.5);
+  color: #eee;
 }
 #gtco-offcanvas a:hover {
-  color: rgba(255, 255, 255, 0.8);
+  color: #eee;
 }
 #gtco-offcanvas ul {
   padding: 0;

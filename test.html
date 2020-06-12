@@ -1,49 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
 </head>
-
 <body>
-    <input type="text" id="ipt" value="">
-    <p id="pid"></p>
-</body>
-<script>
-    var ipt = document.querySelector('#ipt');
-    var pid = document.querySelector('#pid');
-    let obj = {
-        name: ""
-    }
-    // ipt.value =obj.name
-    function oberseve(obj) { // 3. 对对象进行观察
-        if (typeof obj !== 'object') return // 3.1 判断参数是否为对象
-        for (let key in obj) { // 3.2 对对象进行遍历，目的是为了把每个属性都设置get/set
-            defineReactive(obj, key, obj[key])
-            oberseve(obj[key]) // 3.3 obj[key] 有可能还是一个函数，需要递归，给obj[key]里的属性进行设置get/set
-        }
-    }
-    function defineReactive(target, property, value) { // 4. 使用Object.defineProperty
-      Object.defineProperty(target, property, {
-        get() {
-          ipt.value = value // 4.1 当读取时，把值赋值给input框
-          return value
-        },
-        set(newVal) {
-          ipt.value = newVal // 4.1 当设置时，把赋值给input框
-          value = newVal
-        }
-      })
-    }
-    oberseve(obj);
-    ipt.addEventListener("input",function(){
-        obj.name = this.value
-        console.log(obj.name);
-        // pid.innerHTML = this.value
+  <script>
+    const p = new Promise((resolve,reject)=>{
+      resolve(value);
+      reject(error);
     })
-
-</script>
-
+    p.then(()=>{
+      console.log(1);
+    }).catch(()=>{
+      console.log(2);
+    });
+  </script>
+</body>
 </html>

@@ -4,6 +4,7 @@
     width: 104vw !important;
     border-radius: 0;
     overflow-x: scroll;
+    padding-left: 15px!important;
   }
   .tecTitle,
   .introduction {
@@ -55,15 +56,17 @@
     text-indent: 2em;
   }
 }
-.card .card-body {
-  padding-left: 10px;
+.card {
+  margin-bottom: 50px;
 }
 .card .card-body .col-sm-12 {
   text-indent: 2em;
+  padding-left: 23px;
 }
 .card .card-title {
   text-align: center;
   font-size: 20px;
   color: cadetblue;
   margin-top: 18px;
+  padding-left: -10px !important;
 }
