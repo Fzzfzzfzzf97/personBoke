@@ -1,3 +1,11 @@
+<!--
+ * @Description: 
+ * @Version: 2.0
+ * @Autor: HHQ
+ * @Date: 2020-06-03 17:36:12
+ * @LastEditors: HHQ
+ * @LastEditTime: 2020-06-15 16:08:55
+--> 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,16 +14,17 @@
   <title>Document</title>
 </head>
 <body>
+  <img src="./images/css.png" title="title">
   <script>
-    const p = new Promise((resolve,reject)=>{
-      resolve(value);
-      reject(error);
-    })
-    p.then(()=>{
-      console.log(1);
-    }).catch(()=>{
-      console.log(2);
+    let p = new Promise(function(suc,err){
+      suc(1);
+      err(0);
     });
+    p.then(function (data) { 
+      console.log(data);
+     }).catch(function(err){
+      console.log(err);
+     })
   </script>
 </body>
 </html>
